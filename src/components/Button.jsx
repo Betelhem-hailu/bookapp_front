@@ -111,7 +111,8 @@ const Button = ({ children, variant, size = "default", ...props }) => {
     margin-bottom: 10px; 
     gap: 0.75rem;
     border: none;
-
+    font-family: 'Bebas Neue', sans-serif;
+    
     ${sizeStyles[size]};
     ${variantStyles[variant || "default"]};
   `;

@@ -9,6 +9,7 @@ import comedy from './comedy.png';
 import romance from './romance.png';
 import blog1 from './blog1.png';
 import studpic from './studpic.png';
+import cover from './sample_cover.png';
 
 export{
     logo_cust,
@@ -21,5 +22,6 @@ export{
     comedy,
     romance,
     blog1,
-    studpic
+    studpic,
+    cover
 }

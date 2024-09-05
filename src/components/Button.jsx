@@ -64,10 +64,10 @@ const Button = ({ children, variant, size = "default", ...props }) => {
   // Define styles based on variant
   const variantStyles = {
     primary: css`
-      background-color: #00ADB5; /* teal */
+      background-color: #00a9b7; /* teal */
       color: white;
       &:hover {
-        background-color: #00ADB5;
+        background-color: #00a9b7;
         opacity: 0.8;
       }
       &:focus {
@@ -88,10 +88,10 @@ const Button = ({ children, variant, size = "default", ...props }) => {
       }
     `,
     default: css`
-      background-color: #008080; /* teal */
+      background-color: #00a9b7; /* teal */
       color: white;
       &:hover {
-        background-color: #008080;
+        background-color: #00a9b7;
         opacity: 0.8;
       }
       &:focus {
@@ -109,6 +109,7 @@ const Button = ({ children, variant, size = "default", ...props }) => {
     justify-content: center;
     align-items: center;
     margin-bottom: 10px; 
+    cursor: pointer;
     gap: 0.75rem;
     border: none;
     font-family: 'Bebas Neue', sans-serif;

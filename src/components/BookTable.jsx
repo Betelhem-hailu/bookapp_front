@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import moment from 'moment';
 
 // Emotion CSS Styles
 
@@ -65,13 +66,13 @@ return (
     </tr>
     </thead>
     <tbody>
-    {books.map((book, index) => (
+    {books?.map((book, index) => (
         <tr key={index}>
         <td>{book.title}</td>
         <td>{book.author}</td>
         <td>{book.isbn}</td>
-        <td>{book.category}</td>
-        <td>{book.publishedDate}</td>
+        <td>{book.categories}</td>
+        <td>{moment(book.publishDate).format('YYYY-MM-DD')}</td>
         <td>
             <button css={editButtonStyle}>Edit</button>
             <button css={deleteButtonStyle}>Delete</button>

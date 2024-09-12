@@ -53,6 +53,19 @@ export const getBookByCategory = createAsyncThunk(
     }
     )
 
+    export const getBookBySearch = createAsyncThunk(
+        "book/getBookBySearch",
+        async (searchTerm, thunkAPI) => {
+        try {
+            const response = await bookService.searchBook(searchTerm);
+            return response;
+        }
+        catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+        }
+        )
+
 export const getCategories = createAsyncThunk(
     "book/getCategories",
     async (_, thunkAPI) => {
@@ -138,6 +151,20 @@ extraReducers: builder => {
         state.data = payload.data;
     })
     .addCase(getBookByCategory.rejected, (state, {payload}) => {
+        state.error = payload.message;
+        state.loading = false;
+        state.data = null;
+    })
+    .addCase(getBookBySearch.pending, (state)=>{
+        state.loading = true;
+        state.error = null;
+    })
+    .addCase(getBookBySearch.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.error = null;
+        state.data = payload.data;
+    })
+    .addCase(getBookBySearch.rejected, (state, {payload}) => {
         state.error = payload.message;
         state.loading = false;
         state.data = null;

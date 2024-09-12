@@ -7,5 +7,6 @@ import UpdateBook from "./UpdateBook";
 import BookDetail from "./BookDetail";
 import Catalog from "./Catalog";
 import ViewBook  from "./ViewBook";
+import SearchResults from "./SearchResults";
 
-export { Login, Signup, Dashboard, BookList, AddBook, BookDetail, UpdateBook, Catalog, ViewBook };
+export { Login, Signup, Dashboard, BookList, AddBook, BookDetail, UpdateBook, Catalog, ViewBook, SearchResults };

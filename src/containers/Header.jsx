@@ -2,6 +2,8 @@
 import { css } from '@emotion/react';
 import { Button } from '../components';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { IoSearch } from "react-icons/io5";
 
 const headerStyle = css`
   background-color: #00aab2;
@@ -44,16 +46,39 @@ const navItemStyle = css`
       }
 `;
 
+const formStyle = css`
+  position: relative;
+`
+
 const searchStyle = css`
 padding: 5px;
   border-radius: 4px;
   border: 1px solid #ccc;
 `;
 
+const buttonStyle = css`
+border: none;
+background-color: transparent;
+position: absolute;
+top: 2px;
+right: 10px;
+cursor:pointer;
+`
+
 
 
 const Header = () => {
-  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate(); // Hook for navigation
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    // Redirect to the search results page with the search term in the query string
+    if (searchTerm.trim()) {
+      navigate(`/search?query=${searchTerm}`);
+    }
+  };
   return (
     <header css={headerStyle}>
       <div css={logoStyle}>Destiny Book Store</div>
@@ -65,7 +90,14 @@ const Header = () => {
         <a href="/#blog" css={navItemStyle}>Blog</a>
         <a href="/#contact" css={navItemStyle}>Contact Us</a>
       </nav>
-      <input css={searchStyle} type="text" placeholder='search ...'/>
+      <form onSubmit={handleSearch} css={formStyle}>
+      <input css={searchStyle} 
+      type="text" 
+      placeholder='search ...'   
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}/>
+      <button css={buttonStyle} type="submit"><IoSearch size={20} color='#00aab2'/></button>
+      </form>
         <Button variant={"secondary"} size='small' onClick={()=>{navigate("/login")}}>Login</Button>
       </div>
     </header>

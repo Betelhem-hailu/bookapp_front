@@ -116,6 +116,22 @@ const deleteBook = (id) => {
     })
 }
 
+const searchBook = (searchTerm) =>{
+    return axios.get(API_URI + '/search', {
+        params: { searchTerm }
+      }).then(response => {
+        return response.data;
+      }).catch(error => {
+        if(error.response && error.response.status === 404) {
+            console.error('Error:', error.response.data.message);
+            throw new Error(error.response.data.message);
+        } else {
+            console.error('Error:', error.message);
+            throw new Error(error.response.data.message || 'An unexpected error occurred');
+        }
+    })
+}
+
 const bookService = {
 create,
 getBooks,
@@ -123,7 +139,8 @@ getBookbyId,
 getBookByCategory,
 getCategories,
 updateBook,
-deleteBook
+deleteBook,
+searchBook
 };
 
 export default bookService;

@@ -75,6 +75,18 @@ const Button = ({ children, variant, size = "default", ...props }) => {
         box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.5);
       }
     `,
+    secondary: css`
+      background-color: #393E46; /* teal */
+      color: white;
+      &:hover {
+        background-color: #393E46;
+        opacity: 0.8;
+      }
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.5);
+      }
+    `,
     error: css`
       background-color: red;
       color: white;

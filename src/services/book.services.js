@@ -45,9 +45,40 @@ return axios.get(API_URI, {withCredentials: true}).then(response => {
     }
 })
 }
+const getBookbyId = (id) => {
+    return axios.get(API_URI + `/${id}`).then(response => {
+        return response.data;
+    }).catch(error => {
+        if(error.response && error.response.status === 404) {
+            console.error('Error:', error.response.data.message);
+            throw new Error(error.response.data.message);
+        } else {
+            console.error('Error:', error.message);
+            throw new Error(error.response.data.message || 'An unexpected error occurred');
+        }
+    })
+}
+
+const getBookByCategory = (categories) => {
+    const queryString = categories?.map(cat => `categories=${encodeURIComponent(cat)}`).join('&');
+    const url = API_URI + `/category?${queryString}`;
+
+    return axios.get(url).then(response => {
+        return response.data;
+      }).catch(error => {
+        if(error.response && error.response.status === 404) {
+            console.error('Error:', error.response.data.message);
+            throw new Error(error.response.data.message);
+        } else {
+            console.error('Error:', error.message);
+            throw new Error(error.response.data.message || 'An unexpected error occurred');
+        }
+    })
+}
 
 const getCategories = () => {
 return axios.get(API_URI + '/categories').then(response => {
+    console.log(response);
     return response.data;
 }).catch(error => {
     if (error.response && error.response.status === 404) {
@@ -59,11 +90,40 @@ return axios.get(API_URI + '/categories').then(response => {
 })
 }
 
+const updateBook = (id, formData) => {
+    return axios.put(API_URI + `/${id}`, formData).then(response => {
+        return response.data;
+    }).catch(error => {
+        if (error.response && error.response.status === 404) {
+            console.error('Error:', error.response.data.message);
+            throw new Error(error.response.data.message);
+        }
+    })
+}
+
+const deleteBook = (id) => {
+    return axios.delete(API_URI + `/${id}`).then(response => {
+        return response.data;
+    }).catch(error => {
+        if (error.response && error.response.status === 404) {
+            console.error('Error:', error.response.data.message);
+            throw new Error(error.response.data.message);
+        }
+        else if (error.response && error.response.status === 401) {
+            // console.error('Error:', "Unauthorized access please login first");
+            throw new Error("Unauthorized access please login first");
+        }
+    })
+}
 
 const bookService = {
 create,
 getBooks,
-getCategories
+getBookbyId,
+getBookByCategory,
+getCategories,
+updateBook,
+deleteBook
 };
 
 export default bookService;

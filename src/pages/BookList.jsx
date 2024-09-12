@@ -5,6 +5,7 @@ import { AdminLayout } from '../containers';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getBooks } from '../slices/book.slices';
+import { Link } from 'react-router-dom';
 
 // Emotion CSS Styles
 
@@ -58,18 +59,11 @@ const BookList = () => {
     useEffect(() => {
       dispatch(getBooks());
     }, [dispatch]);
-  
-    // Conditionally render the table based on loading state
+
     if (loading) {
       return <p>Loading...</p>;
     }
 
-// Sample data for the books table
-// const books = [
-// { title: 'Title 1', author: 'Author 1', isbn: '730196', category: 'Comedy', publishedDate: '22/07/2002' },
-// { title: 'Title 2', author: 'Author 2', isbn: '123456', category: 'Drama', publishedDate: '11/03/2010' },
-// // Add more book data here...
-// ];
 
 return (
 <AdminLayout>
@@ -77,7 +71,7 @@ return (
     <div css={headerStyle}>
     <h2>Books List</h2>
     <div css={addBookButtonStyle}>
-    <Button>+ Add Book</Button>
+    <Link to={"/admin/books/addbook"}><Button >+ Add Book</Button></Link>
     </div>
     </div>
     <div css={filterSearchStyle}>

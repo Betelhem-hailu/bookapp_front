@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { AddBook, BookDetail, BookList, Catalog, Dashboard, Login, SearchResults, Signup, UpdateBook, ViewBook } from './pages';
+import { AddBook, BookDetail, BookList, Cart, Catalog, Dashboard, Login, SearchResults, Signup, UpdateBook, ViewBook } from './pages';
 import { Home } from './containers';
 
 function App() {
@@ -20,6 +20,8 @@ function App() {
       <Route path='/admin/books/addbook' element={<AddBook />} />
       <Route path='/admin/books/updateBook/:bookId' element={<UpdateBook />} />
       <Route path='/admin/books/:id' element={<BookDetail />} />
+
+      <Route path='/cart' element={<Cart />} />
     </Routes>
       </>
   );

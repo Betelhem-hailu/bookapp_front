@@ -1,4 +1,3 @@
-"use client";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 const API_URI = "http://localhost:5138/api/Books";
@@ -47,13 +46,14 @@ return axios.get(API_URI, {withCredentials: true}).then(response => {
 }
 const getBookbyId = (id) => {
     return axios.get(API_URI + `/${id}`).then(response => {
-        return response.data;
+        console.log(response);
+        return response.data.book;
     }).catch(error => {
         if(error.response && error.response.status === 404) {
             console.error('Error:', error.response.data.message);
             throw new Error(error.response.data.message);
         } else {
-            console.error('Error:', error.message);
+            console.error('Error:', error);
             throw new Error(error.response.data.message || 'An unexpected error occurred');
         }
     })

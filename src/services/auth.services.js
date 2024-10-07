@@ -1,4 +1,3 @@
-"use client";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 const API_URI = "http://localhost:5138/api/Auth";

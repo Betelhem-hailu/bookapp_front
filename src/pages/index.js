@@ -8,5 +8,6 @@ import BookDetail from "./BookDetail";
 import Catalog from "./Catalog";
 import ViewBook  from "./ViewBook";
 import SearchResults from "./SearchResults";
+import Cart from "./Cart";
 
-export { Login, Signup, Dashboard, BookList, AddBook, BookDetail, UpdateBook, Catalog, ViewBook, SearchResults };
+export { Login, Signup, Dashboard, BookList, AddBook, BookDetail, UpdateBook, Catalog, ViewBook, SearchResults, Cart };

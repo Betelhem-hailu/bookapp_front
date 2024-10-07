@@ -7,6 +7,7 @@ import { IoMdHeart } from "react-icons/io";
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookByCategory, getCategories } from '../slices/book.slices';
+import { addToCart } from '../slices/cart.slices';
 
 const contentStyle = css`
   display: flex;
@@ -149,6 +150,8 @@ const { data, categories, loading, error } = useSelector((state) => state.book);
     }
   }, [filteredCategories, dispatch]);
 
+
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -196,6 +199,11 @@ const { data, categories, loading, error } = useSelector((state) => state.book);
 export default Catalog;
 
 const BookCard = ({Id, title, author, price, imageUrl }) => {
+  // const dispatch = useDispatch();
+
+  // const handleAddToCart = (id) =>{
+  //   dispatch(addToCart(id));
+  // }
 
   function handleClick() {
     window.location.href = `/catalog/${Id}`;

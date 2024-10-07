@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { getBookbyId } from '../slices/book.slices';
 import moment from 'moment';
 import { cover } from '../assets';
+import { addToCart } from '../slices/cart.slices';
 
 
 const containerStyle = css`
@@ -125,6 +126,7 @@ padding-top: 10px;
 const ViewBook = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
+    console.log(id)
 
     // Fix the selector based on your state structure
     const { book, loading } = useSelector((state) => state.book);
@@ -132,6 +134,10 @@ const ViewBook = () => {
     useEffect(() => {
       dispatch(getBookbyId(id));
     }, [dispatch, id]);
+
+    // const handleAddToCart = (id) =>{
+    //   dispatch(addToCart(id));
+    // }
   
     // Conditionally render the table based on loading state
     if (loading) {
@@ -152,9 +158,9 @@ const ViewBook = () => {
         />
         </ImageWrapper>
         <BookInfo>
-        <button css={buttonStyle}>
+        {/* <button css={buttonStyle} onClick={()=>{handleAddToCart(book.BookId)}}>
        Add to Cart
-      </button>
+      </button> */}
           <BookTitle>{book.title}</BookTitle>
           <BookAuthor>by {book.author}</BookAuthor>
           <BookDescription>
